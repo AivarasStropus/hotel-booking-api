@@ -12,6 +12,7 @@ public abstract class UserInfoConverter {
         UserInfo userInfo = null;
         if(userInfoDTO != null) {
             userInfo = new UserInfo();
+            userInfo.setId(userInfoDTO.getId());
             userInfo.setName(userInfoDTO.getName());
             userInfo.setLastName(userInfoDTO.getLastName());
             userInfo.setEmail(userInfoDTO.getEmail());
@@ -23,6 +24,7 @@ public abstract class UserInfoConverter {
         UserInfoDTO userInfoDto = null;
         if (userInfo != null) {
             userInfoDto = new UserInfoDTO();
+            userInfoDto.setId(userInfo.getId());
             userInfoDto.setName(userInfo.getName());
             userInfoDto.setLastName(userInfo.getLastName());
             userInfoDto.setEmail(userInfo.getEmail());

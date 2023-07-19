@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class UserInfoDTO {
 
+    private Long id;
+
     private String name;
 
     private String lastName;
