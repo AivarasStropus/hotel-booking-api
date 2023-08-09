@@ -9,28 +9,22 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "rooms")
+@Table(name = "reservations")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Room {
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "capacity")
-    private Integer capacity;
+    @Column(name = "check_in")
+    private String checkin;
 
-    @Column(name = "roomNumber")
-    private Integer roomNumber;
-
-    @Column(name = "price")
-    private Double price;
-
-    @Column(name = "roomClass")
-    private String roomClass;
+    @Column(name ="check_out")
+    private String checkout;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
