@@ -18,8 +18,11 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<List<RoomDTO>> getAllRooms() {
-        return ResponseEntity.ok(roomService.getAllRooms());
+    public ResponseEntity<List<RoomDTO>> getAllRooms(@RequestParam(name = "roomClass", required = false) String roomClass,
+                                                     @RequestParam(name = "price", required = false) Double price,
+                                                     @RequestParam(name = "capacity", required = false) Integer capacity,
+                                                     @RequestParam(name = "roomNumber", required = false) Integer number) {
+        return ResponseEntity.ok(roomService.getAllRooms(roomClass, price, capacity, number));
     }
 
     @PostMapping

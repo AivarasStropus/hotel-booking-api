@@ -16,8 +16,26 @@ public class RoomService {
 
     private RoomRespository roomRespository;
 
-    public List<RoomDTO> getAllRooms() {
-        return RoomConverter.convertRoomListToRoomDtoList(roomRespository.findAll());
+    public List<RoomDTO> getAllRooms(String roomClass,
+                                     Double price,
+                                     Integer capacity,
+                                     Integer number) {
+
+        List<Room> rooms;
+
+        if (roomClass != null) {
+            rooms = roomRespository.findAllByRoomClass(roomClass);
+        } else if (price != null) {
+            rooms = roomRespository.findAllByPrice(price);
+        } else if (capacity != null) {
+            rooms = roomRespository.findAllByCapacity(capacity);
+        } else if (number != null) {
+            rooms = roomRespository.findAllByRoomNumber(number);
+        } else {
+            rooms = roomRespository.findAll();
+        }
+
+        return RoomConverter.convertRoomListToRoomDtoList(rooms);
     }
 
     public RoomDTO createRoom(Room room) {
