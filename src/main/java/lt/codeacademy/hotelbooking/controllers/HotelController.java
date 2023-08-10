@@ -18,8 +18,9 @@ public class HotelController {
     HotelService hotelService;
 
     @GetMapping
-    public ResponseEntity<List<HotelDTO>> getAllHotels() {
-        return ResponseEntity.ok(hotelService.getAllHotels());
+    public ResponseEntity<List<HotelDTO>> getAllHotels(@RequestParam(name = "hotelName", required = false) String hotelName,
+                                                       @RequestParam(name = "location", required = false) String location) {
+        return ResponseEntity.ok(hotelService.getAllHotels(hotelName, location));
     }
 
     @PostMapping

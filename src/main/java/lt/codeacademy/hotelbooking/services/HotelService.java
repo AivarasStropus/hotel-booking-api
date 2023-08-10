@@ -16,8 +16,19 @@ public class HotelService {
 
     private HotelRepository hotelRepository;
 
-    public List<HotelDTO> getAllHotels() {
-        return HotelConverter.convertHotelListToHotelDtoList(hotelRepository.findAll());
+    public List<HotelDTO> getAllHotels(String name, String location) {
+
+        List<Hotel> hotels;
+
+        if(name != null) {
+            hotels = hotelRepository.findAllByName(name);
+        } else if (location != null) {
+            hotels = hotelRepository.findAllByLocation(location);
+        } else {
+            hotels = hotelRepository.findAll();
+        }
+
+        return HotelConverter.convertHotelListToHotelDtoList(hotels);
     }
 
     public HotelDTO createHotel(Hotel hotel) {
