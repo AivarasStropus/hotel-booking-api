@@ -18,8 +18,9 @@ public class OwnerInfoController {
     OwnerInfoService ownerInfoService;
 
     @GetMapping
-    public ResponseEntity<List<OwnerInfoDTO>> getAllUsers() {
-        return ResponseEntity.ok(ownerInfoService.getAllOwners());
+    public ResponseEntity<List<OwnerInfoDTO>> getAllUsers(@RequestParam(name = "name", required = false) String name,
+                                                          @RequestParam(name = "lastName", required = false) String lastName) {
+        return ResponseEntity.ok(ownerInfoService.getAllOwners(name, lastName));
     }
 
     @PostMapping

@@ -16,8 +16,19 @@ public class OwnerInfoService {
 
     private OwnerInfoRepository ownerInfoRepository;
 
-    public List<OwnerInfoDTO> getAllOwners() {
-        return OwnerInfoConverter.convertOwnerListToOwnerDtoList(ownerInfoRepository.findAll());
+    public List<OwnerInfoDTO> getAllOwners(String name, String lastName) {
+
+        List<OwnerInfo> owners;
+
+        if (name != null) {
+            owners = ownerInfoRepository.findAllByName(name);
+        } else if (lastName != null) {
+            owners = ownerInfoRepository.findAllByLastName(lastName);
+        } else {
+            owners = ownerInfoRepository.findAll();
+        }
+
+        return OwnerInfoConverter.convertOwnerListToOwnerDtoList(owners);
     }
 
     public OwnerInfoDTO createOwner(OwnerInfo ownerInfo) {
