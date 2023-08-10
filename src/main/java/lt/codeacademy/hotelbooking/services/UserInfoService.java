@@ -16,8 +16,19 @@ public class UserInfoService {
 
     private UserInfoRepository userInfoRepository;
 
-    public List<UserInfoDTO> getAllUsers() {
-        return UserInfoConverter.convertUserListToUserDtoList(userInfoRepository.findAll());
+    public List<UserInfoDTO> getAllUsers(String name, String lastName) {
+
+        List<UserInfo> users;
+
+        if(name != null) {
+            users = userInfoRepository.findAllByName(name);
+        } else if (lastName != null) {
+            users = userInfoRepository.findAllByLastName(lastName);
+        } else {
+            users = userInfoRepository.findAll();
+        }
+
+        return UserInfoConverter.convertUserListToUserDtoList(users);
     }
 
     public UserInfoDTO createUser(UserInfo userInfo) {

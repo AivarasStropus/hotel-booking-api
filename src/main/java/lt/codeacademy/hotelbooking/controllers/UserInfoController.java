@@ -18,8 +18,9 @@ public class UserInfoController {
     UserInfoService userInfoService;
 
     @GetMapping
-    public ResponseEntity<List<UserInfoDTO>> getAllUsers() {
-        return ResponseEntity.ok(userInfoService.getAllUsers());
+    public ResponseEntity<List<UserInfoDTO>> getAllUsers(@RequestParam(name = "name", required = false) String name,
+                                                         @RequestParam(name = "lastName", required = false) String lastName) {
+        return ResponseEntity.ok(userInfoService.getAllUsers(name, lastName));
     }
 
     @PostMapping
