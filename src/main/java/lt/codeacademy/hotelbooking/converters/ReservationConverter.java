@@ -3,6 +3,7 @@ package lt.codeacademy.hotelbooking.converters;
 import lt.codeacademy.hotelbooking.dto.ReservationDTO;
 import lt.codeacademy.hotelbooking.entities.Reservation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ReservationConverter {
@@ -34,6 +35,7 @@ public abstract class ReservationConverter {
     public static List<ReservationDTO> convertReservationListToReservationDtoList(List<Reservation> reservationList) {
         List<ReservationDTO> reservationDTOList = null;
         if(reservationList != null && !reservationList.isEmpty()) {
+            reservationDTOList = new ArrayList<>();
             for (Reservation u : reservationList) {
                 reservationDTOList.add(convertReservationToReservationDto(u));
             }
