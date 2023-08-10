@@ -16,8 +16,18 @@ public class ReservationService {
 
     private ReservationRepository reservationRepository;
 
-    public List<ReservationDTO> getAllReservations() {
-        return ReservationConverter.convertReservationListToReservationDtoList(reservationRepository.findAll());
+    public List<ReservationDTO> getAllReservations(String checkin, String checkout) {
+
+        List<Reservation> reservations;
+
+        if(checkin != null) {
+            reservations = reservationRepository.findAllByCheckin(checkin);
+        } else if (checkout != null) {
+            reservations = reservationRepository.findAllByCheckout(checkout);
+        } else {
+            reservations = reservationRepository.findAll();
+        }
+        return ReservationConverter.convertReservationListToReservationDtoList(reservations);
     }
 
     public ReservationDTO createReservation(Reservation reservation) {

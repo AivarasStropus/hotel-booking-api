@@ -18,8 +18,9 @@ public class ReservationController {
     ReservationService reservationService;
 
     @GetMapping
-    public ResponseEntity<List<ReservationDTO>> getAllReservations(){
-        return ResponseEntity.ok(reservationService.getAllReservations());
+    public ResponseEntity<List<ReservationDTO>> getAllReservations(@RequestParam(name = "checkin", required = false) String checkin,
+                                                                   @RequestParam(name = "checkout", required = false) String checkout){
+        return ResponseEntity.ok(reservationService.getAllReservations(checkin, checkout));
     }
 
     @PostMapping
